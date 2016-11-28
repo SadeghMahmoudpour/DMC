@@ -65,11 +65,14 @@ def value_transform(df):
     return df
 
 
-def process_df(df):
+def process_df(df, type):
     testdata = clean_df(df)
     testcols = get_train_attrs(testdata)
     testcols = value_transform(testcols)
-    return testcols, testdata['returnQuantity']
+    if type == 'train':
+        return testcols, testdata['returnQuantity']
+    else:
+        return testcols
 
 
 def compute_error(result, real):
